@@ -391,7 +391,7 @@ public abstract class ActionBarSherlock {
      * @param savedInstanceState If the activity is being re-initialized after
      *                           previously being shut down then this Bundle
      *                           contains the data it most recently supplied in
-     *                           {@link Activity}onSaveInstanceState(Bundle)}.
+     *                           {@link Activity#}onSaveInstanceState(Bundle)}.
      *                           <strong>Note: Otherwise it is null.</strong>
      */
     public void dispatchPostCreate(Bundle savedInstanceState) {}
@@ -537,6 +537,9 @@ public abstract class ActionBarSherlock {
      */
     public void dispatchDestroy() {}
 
+    public void dispatchSaveInstanceState(Bundle outState) {}
+
+    public void dispatchRestoreInstanceState(Bundle savedInstanceState) {}
 
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
@@ -769,7 +772,7 @@ public abstract class ActionBarSherlock {
         // Make sure that action views can get an appropriate theme.
         if (mMenuInflater == null) {
             if (getActionBar() != null) {
-                mMenuInflater = new MenuInflater(getThemedContext());
+                mMenuInflater = new MenuInflater(getThemedContext(), mActivity);
             } else {
                 mMenuInflater = new MenuInflater(mActivity);
             }
